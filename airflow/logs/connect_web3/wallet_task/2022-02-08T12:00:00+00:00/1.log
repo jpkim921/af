@@ -1,0 +1,57 @@
+[2022-02-09 15:26:22,655] {taskinstance.py:1032} INFO - Dependencies all met for <TaskInstance: connect_web3.wallet_task scheduled__2022-02-08T12:00:00+00:00 [queued]>
+[2022-02-09 15:26:22,665] {taskinstance.py:1032} INFO - Dependencies all met for <TaskInstance: connect_web3.wallet_task scheduled__2022-02-08T12:00:00+00:00 [queued]>
+[2022-02-09 15:26:22,666] {taskinstance.py:1238} INFO - 
+--------------------------------------------------------------------------------
+[2022-02-09 15:26:22,666] {taskinstance.py:1239} INFO - Starting attempt 1 of 1
+[2022-02-09 15:26:22,666] {taskinstance.py:1240} INFO - 
+--------------------------------------------------------------------------------
+[2022-02-09 15:26:22,678] {taskinstance.py:1259} INFO - Executing <Task(WalletOperator): wallet_task> on 2022-02-08 12:00:00+00:00
+[2022-02-09 15:26:22,681] {standard_task_runner.py:52} INFO - Started process 13859 to run task
+[2022-02-09 15:26:22,688] {standard_task_runner.py:76} INFO - Running: ['airflow', 'tasks', 'run', 'connect_web3', 'wallet_task', 'scheduled__2022-02-08T12:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/connect_web3.py', '--cfg-path', '/var/folders/cm/mx_sf4z94vlfjw8ql31yvhgw0000gq/T/tmpzsjj72gc', '--error-file', '/var/folders/cm/mx_sf4z94vlfjw8ql31yvhgw0000gq/T/tmpenzvd4a3']
+[2022-02-09 15:26:22,691] {standard_task_runner.py:77} INFO - Job 5: Subtask wallet_task
+[2022-02-09 15:26:27,748] {logging_mixin.py:109} INFO - Running <TaskInstance: connect_web3.wallet_task scheduled__2022-02-08T12:00:00+00:00 [running]> on host Veronicas-MacBook-Air.local
+[2022-02-09 15:26:32,800] {taskinstance.py:1426} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=connect_web3
+AIRFLOW_CTX_TASK_ID=wallet_task
+AIRFLOW_CTX_EXECUTION_DATE=2022-02-08T12:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-02-08T12:00:00+00:00
+[2022-02-09 15:26:32,867] {taskinstance.py:1700} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/af/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1329, in _run_raw_task
+    self._execute_task_with_callbacks(context)
+  File "/opt/anaconda3/envs/af/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1455, in _execute_task_with_callbacks
+    result = self._execute_task(context, self.task)
+  File "/opt/anaconda3/envs/af/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1511, in _execute_task
+    result = execute_callable(context=context)
+  File "/Users/dev/projects/learn/af/airflow/custom_operators/wallet_operator.py", line 27, in execute
+    balance = hook.checkBalance()
+TypeError: checkBalance() missing 1 required positional argument: 'address'
+[2022-02-09 15:26:32,886] {taskinstance.py:1277} INFO - Marking task as FAILED. dag_id=connect_web3, task_id=wallet_task, execution_date=20220208T120000, start_date=20220209T202622, end_date=20220209T202632
+[2022-02-09 15:26:32,914] {standard_task_runner.py:92} ERROR - Failed to execute job 5 for task wallet_task
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/af/lib/python3.7/site-packages/airflow/task/task_runner/standard_task_runner.py", line 85, in _start_by_fork
+    args.func(args, dag=self.dag)
+  File "/opt/anaconda3/envs/af/lib/python3.7/site-packages/airflow/cli/cli_parser.py", line 48, in command
+    return func(*args, **kwargs)
+  File "/opt/anaconda3/envs/af/lib/python3.7/site-packages/airflow/utils/cli.py", line 92, in wrapper
+    return f(*args, **kwargs)
+  File "/opt/anaconda3/envs/af/lib/python3.7/site-packages/airflow/cli/commands/task_command.py", line 298, in task_run
+    _run_task_by_selected_method(args, dag, ti)
+  File "/opt/anaconda3/envs/af/lib/python3.7/site-packages/airflow/cli/commands/task_command.py", line 107, in _run_task_by_selected_method
+    _run_raw_task(args, ti)
+  File "/opt/anaconda3/envs/af/lib/python3.7/site-packages/airflow/cli/commands/task_command.py", line 184, in _run_raw_task
+    error_file=args.error_file,
+  File "/opt/anaconda3/envs/af/lib/python3.7/site-packages/airflow/utils/session.py", line 70, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/opt/anaconda3/envs/af/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1329, in _run_raw_task
+    self._execute_task_with_callbacks(context)
+  File "/opt/anaconda3/envs/af/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1455, in _execute_task_with_callbacks
+    result = self._execute_task(context, self.task)
+  File "/opt/anaconda3/envs/af/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1511, in _execute_task
+    result = execute_callable(context=context)
+  File "/Users/dev/projects/learn/af/airflow/custom_operators/wallet_operator.py", line 27, in execute
+    balance = hook.checkBalance()
+TypeError: checkBalance() missing 1 required positional argument: 'address'
+[2022-02-09 15:26:32,948] {local_task_job.py:154} INFO - Task exited with return code 1
+[2022-02-09 15:26:32,975] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check
